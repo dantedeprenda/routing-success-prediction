@@ -1,0 +1,27 @@
+{
+ "created": "2026-09-29T07:41:01+00:00",
+ "requested_model": "claude-sonnet-5",
+ "returned_model": "claude-sonnet-5",
+ "usage": {
+  "input_tokens": 207,
+  "output_tokens": 639
+ },
+ "prompt": "A router must decide, before any language model answers, whether a given language model will answer a user request fully and correctly. It sees only the request: a conversation, possibly including an agent's earlier steps. The requests come from a mix of competition mathematics, programming problems, graduate-level science questions, general multiple-choice knowledge questions and software-engineering issues.\n\nWrite exactly 13 yes/no questions about the request that a careful reader could answer from the request text alone, and whose answers would help predict whether a language model succeeds. Do not mention any specific model, company or benchmark. Return a JSON object mapping a short snake_case id to each question.",
+ "reply": "```json\n{\n  \"requires_multi_step_reasoning\": \"Does answering the request require multiple chained reasoning or computation steps rather than a single lookup?\",\n  \"has_explicit_final_answer_format\": \"Does the request specify a particular format, structure, or template that the final answer must follow?\",\n  \"involves_code_writing\": \"Does the request require writing new code to solve the problem?\",\n  \"involves_code_debugging\": \"Does the request involve reading, debugging, or modifying existing code or an error trace?\",\n  \"provides_prior_agent_steps\": \"Does the request include earlier reasoning, tool outputs, or agent steps that must be continued or corrected?\",\n  \"requires_external_knowledge\": \"Does answering correctly require specialized domain knowledge (e.g., graduate-level science, advanced math theorems) beyond common knowledge?\",\n  \"is_multiple_choice\": \"Is the request a multiple-choice question with a fixed set of answer options?\",\n  \"has_large_context\": \"Does the request include a long or complex context (e.g., large code file, long problem statement, extensive conversation history)?\",\n  \"requires_numeric_precision\": \"Does the request require producing an exact numeric value or precise computation as the answer?\",\n  \"is_open_ended\": \"Is the request open-ended, allowing for multiple valid approaches or answers rather than one exact correct answer?\",\n  \"requires_tool_or_execution_simulation\": \"Does the request require simulating program execution, algorithmic behavior, or environment interaction without actually running it?\",\n  \"has_ambiguous_or_underspecified_requirements\": \"Are there ambiguous, missing, or underspecified details in the request that could lead to multiple interpretations?\",\n  \"requires_proof_or_derivation\": \"Does the request require a formal proof, derivation, or step-by-step justification rather than just a final result?\"\n}\n```",
+ "questions": {
+  "requires_multi_step_reasoning": "Does answering the request require multiple chained reasoning or computation steps rather than a single lookup?",
+  "has_explicit_final_answer_format": "Does the request specify a particular format, structure, or template that the final answer must follow?",
+  "involves_code_writing": "Does the request require writing new code to solve the problem?",
+  "involves_code_debugging": "Does the request involve reading, debugging, or modifying existing code or an error trace?",
+  "provides_prior_agent_steps": "Does the request include earlier reasoning, tool outputs, or agent steps that must be continued or corrected?",
+  "requires_external_knowledge": "Does answering correctly require specialized domain knowledge (e.g., graduate-level science, advanced math theorems) beyond common knowledge?",
+  "is_multiple_choice": "Is the request a multiple-choice question with a fixed set of answer options?",
+  "has_large_context": "Does the request include a long or complex context (e.g., large code file, long problem statement, extensive conversation history)?",
+  "requires_numeric_precision": "Does the request require producing an exact numeric value or precise computation as the answer?",
+  "is_open_ended": "Is the request open-ended, allowing for multiple valid approaches or answers rather than one exact correct answer?",
+  "requires_tool_or_execution_simulation": "Does the request require simulating program execution, algorithmic behavior, or environment interaction without actually running it?",
+  "has_ambiguous_or_underspecified_requirements": "Are there ambiguous, missing, or underspecified details in the request that could lead to multiple interpretations?",
+  "requires_proof_or_derivation": "Does the request require a formal proof, derivation, or step-by-step justification rather than just a final result?"
+ },
+ "problems": []
+}

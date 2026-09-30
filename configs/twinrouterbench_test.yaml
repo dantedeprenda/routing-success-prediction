@@ -1,0 +1,101 @@
+# FINAL test run. Questions v1 frozen. Test = seed 42's held-out trajectory half (never called during design).
+name: twinrouterbench_test
+dataset:
+  loader: twinrouterbench
+  path: data/twinrouterbench/question_bank.jsonl
+split:
+  test_frac: 0.5
+  test_seed: 42
+  seeds:
+  - 42
+  - 999
+  - 2024
+  - 2025
+  - 3407
+  k_shot:
+  - 25
+  - 50
+  - 100
+  - null
+  exclude_from_test: data/design_seen_trb.txt
+recalibrate:
+- platt
+binary_pairs:
+- - 0
+  - 3
+match_frac: 0.9
+routers:
+- type: oracle
+- type: always_each
+- type: category_best
+- type: knn
+  k: 10
+- type: tfidf_logreg
+- type: embedding
+  label: bge
+  # Local open embedding model; reads at most 512 tokens (~2,000 chars), so the cut is 2,000
+  # chars (head + latest step, as for the decision routers). Same per-model logistic head as
+  # tfidf_logreg and the decision-model features router, so only the representation differs.
+  store:
+    model: BAAI/bge-base-en-v1.5
+    max_chars: 2000
+    device: mps
+  k: 10
+- type: embedding
+  label: bgeL
+  # Stronger embedding baseline: bge-large with each logistic head's C tuned by CV on the
+  # labeled examples only (the others keep C=1, as does the decision-model head).
+  store:
+    model: BAAI/bge-large-en-v1.5
+    max_chars: 2000
+    device: mps
+  tune: true
+  k: 10
+- type: decision
+  label: jev
+  backend:
+    base_url: https://api.typesafe.ai
+    model: jev-1.13.0
+    name: jev
+    api_key_env: TYPESAFE_API_KEY
+    price_per_m_input: 0.042
+  max_chars: 16000
+  workers: 6
+  formulations:
+  - choice
+  - tier_nouls
+  - difficulty
+  - features
+- type: decision
+  label: jev-4k
+  backend:
+    base_url: https://api.typesafe.ai
+    model: jev-1.13.0
+    name: jev
+    api_key_env: TYPESAFE_API_KEY
+    price_per_m_input: 0.042
+  max_chars: 4000
+  workers: 6
+  formulations:
+  - choice
+  - tier_nouls
+  - difficulty
+  - features
+- type: decision
+  label: laya-ml
+  backend:
+    kind: laya_local
+    checkpoint: multilingual
+    max_len: 1024
+    device: mps
+    noul_as_choice: true
+  max_chars: 4000
+  workers: 1
+  formulations:
+  - choice
+  - tier_nouls
+  - difficulty
+  - features
+# LLM-router baselines (RQ2) and Jev -> judge fallback (RQ3) run on the test split only,
+# via scripts/judge_sample.py: the judges need no labels, and a frontier judge on every
+# train + test prompt would cost ~$30 at a 20 req/min rate limit.

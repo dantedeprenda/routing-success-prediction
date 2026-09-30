@@ -1,0 +1,31 @@
+{
+ "created": "2026-09-29T12:38:50+00:00",
+ "pair": [
+  "deepseek-v3-0324",
+  "claude-sonnet-4"
+ ],
+ "requested_model": "claude-sonnet-5",
+ "returned_model": "claude-sonnet-5",
+ "usage": {
+  "input_tokens": 235,
+  "output_tokens": 922
+ },
+ "prompt": "Two language models, deepseek-v3-0324 and claude-sonnet-4, will each attempt the same user request: a conversation, possibly including an agent's earlier steps. The requests come from a mix of competition mathematics, programming problems, graduate-level science questions, general multiple-choice knowledge questions and software-engineering issues. Both models often succeed or fail together; what matters here is the requests where exactly one of them is right.\n\nWrite exactly 13 yes/no questions about the request that a careful reader could answer from the request text alone, and whose answers would help predict which of the two models answers correctly when they disagree. Do not mention any benchmark. Return a JSON object mapping a short snake_case id to each question.",
+ "reply": "```json\n{\n  \"is_competition_math\": \"Does the request involve a competition-style mathematics problem (e.g., proof, combinatorics, number theory, algebra with an exact numeric or symbolic answer)?\",\n  \"is_programming_task\": \"Does the request require writing, completing, or debugging source code?\",\n  \"is_software_engineering_context\": \"Does the request involve a larger software engineering context, such as an existing codebase, file structure, or multi-step agentic task?\",\n  \"is_graduate_science\": \"Does the request involve graduate-level science content (e.g., physics, chemistry, biology) requiring domain-specific technical knowledge?\",\n  \"is_multiple_choice\": \"Is the request a multiple-choice question with a fixed set of answer options?\",\n  \"requires_multistep_reasoning\": \"Does answering the request correctly require multiple chained reasoning or calculation steps rather than a single lookup or simple computation?\",\n  \"requires_precise_numeric_computation\": \"Does the request require exact numeric computation (e.g., arithmetic, algebraic simplification, or counting) where a small error changes the final answer?\",\n  \"has_long_context\": \"Is the request long (e.g., containing extensive background text, code, or prior conversation turns) rather than a short, self-contained prompt?\",\n  \"requires_external_or_specialized_knowledge\": \"Does answering correctly require specialized factual knowledge that is not derivable from general reasoning alone (e.g., specific facts, formulas, or domain conventions)?\",\n  \"has_ambiguous_or_underspecified_instructions\": \"Are the instructions in the request ambiguous, underspecified, or open to multiple reasonable interpretations?\",\n  \"requires_structured_output_format\": \"Does the request explicitly require the answer to follow a specific structured format (e.g., JSON, code block, numbered list, particular syntax)?\",\n  \"involves_prior_agent_steps\": \"Does the request include prior steps, tool outputs, or partial progress from an earlier stage of an agentic task that must be continued correctly?\",\n  \"requires_edge_case_handling\": \"Does the request likely require careful handling of edge cases or exceptions (e.g., special input values, boundary conditions, or error handling) to be answered correctly?\"\n}\n```",
+ "questions": {
+  "is_competition_math": "Does the request involve a competition-style mathematics problem (e.g., proof, combinatorics, number theory, algebra with an exact numeric or symbolic answer)?",
+  "is_programming_task": "Does the request require writing, completing, or debugging source code?",
+  "is_software_engineering_context": "Does the request involve a larger software engineering context, such as an existing codebase, file structure, or multi-step agentic task?",
+  "is_graduate_science": "Does the request involve graduate-level science content (e.g., physics, chemistry, biology) requiring domain-specific technical knowledge?",
+  "is_multiple_choice": "Is the request a multiple-choice question with a fixed set of answer options?",
+  "requires_multistep_reasoning": "Does answering the request correctly require multiple chained reasoning or calculation steps rather than a single lookup or simple computation?",
+  "requires_precise_numeric_computation": "Does the request require exact numeric computation (e.g., arithmetic, algebraic simplification, or counting) where a small error changes the final answer?",
+  "has_long_context": "Is the request long (e.g., containing extensive background text, code, or prior conversation turns) rather than a short, self-contained prompt?",
+  "requires_external_or_specialized_knowledge": "Does answering correctly require specialized factual knowledge that is not derivable from general reasoning alone (e.g., specific facts, formulas, or domain conventions)?",
+  "has_ambiguous_or_underspecified_instructions": "Are the instructions in the request ambiguous, underspecified, or open to multiple reasonable interpretations?",
+  "requires_structured_output_format": "Does the request explicitly require the answer to follow a specific structured format (e.g., JSON, code block, numbered list, particular syntax)?",
+  "involves_prior_agent_steps": "Does the request include prior steps, tool outputs, or partial progress from an earlier stage of an agentic task that must be continued correctly?",
+  "requires_edge_case_handling": "Does the request likely require careful handling of edge cases or exceptions (e.g., special input values, boundary conditions, or error handling) to be answered correctly?"
+ },
+ "problems": []
+}

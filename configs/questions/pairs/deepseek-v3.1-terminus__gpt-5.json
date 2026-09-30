@@ -1,0 +1,31 @@
+{
+ "created": "2026-09-29T12:39:09+00:00",
+ "pair": [
+  "deepseek-v3.1-terminus",
+  "gpt-5"
+ ],
+ "requested_model": "claude-sonnet-5",
+ "returned_model": "claude-sonnet-5",
+ "usage": {
+  "input_tokens": 233,
+  "output_tokens": 910
+ },
+ "prompt": "Two language models, deepseek-v3.1-terminus and gpt-5, will each attempt the same user request: a conversation, possibly including an agent's earlier steps. The requests come from a mix of competition mathematics, programming problems, graduate-level science questions, general multiple-choice knowledge questions and software-engineering issues. Both models often succeed or fail together; what matters here is the requests where exactly one of them is right.\n\nWrite exactly 13 yes/no questions about the request that a careful reader could answer from the request text alone, and whose answers would help predict which of the two models answers correctly when they disagree. Do not mention any benchmark. Return a JSON object mapping a short snake_case id to each question.",
+ "reply": "```json\n{\n  \"is_competition_math\": \"Does the request involve a competition-style mathematics problem (e.g., algebra, number theory, combinatorics, geometry)?\",\n  \"requires_multi_step_derivation\": \"Does solving the request require a long chain of multi-step logical or algebraic derivations rather than a single lookup or short computation?\",\n  \"requires_exact_numeric_answer\": \"Does the request require producing an exact numeric or symbolic final answer (as opposed to an open-ended explanation)?\",\n  \"involves_code_writing_or_debugging\": \"Does the request involve writing, completing, or debugging a piece of code?\",\n  \"requires_code_execution_simulation\": \"Would correctly answering the request require mentally simulating program execution or tracing through code state changes?\",\n  \"is_graduate_level_science\": \"Does the request involve graduate-level scientific content (e.g., physics, chemistry, biology, or advanced engineering concepts)?\",\n  \"is_multiple_choice\": \"Is the request framed as a multiple-choice question with a fixed set of answer options?\",\n  \"requires_specialized_domain_knowledge\": \"Does answering correctly require specialized or niche domain knowledge not commonly known to a generalist?\",\n  \"has_prior_agent_steps\": \"Does the request include prior conversation turns or agent steps that must be understood and built upon correctly?\",\n  \"requires_careful_edge_case_handling\": \"Does the request involve edge cases, exceptions, or corner conditions that must be carefully handled for a correct answer?\",\n  \"has_multiple_subquestions\": \"Does the request contain multiple distinct sub-questions or sub-tasks that all need to be addressed?\",\n  \"requires_precise_formatting\": \"Does the request require the answer to follow a strict output format (e.g., specific code structure, table, or answer template)?\",\n  \"is_ambiguous_or_underspecified\": \"Is the request ambiguous or missing information needed to produce a fully correct and unique answer?\"\n}\n```",
+ "questions": {
+  "is_competition_math": "Does the request involve a competition-style mathematics problem (e.g., algebra, number theory, combinatorics, geometry)?",
+  "requires_multi_step_derivation": "Does solving the request require a long chain of multi-step logical or algebraic derivations rather than a single lookup or short computation?",
+  "requires_exact_numeric_answer": "Does the request require producing an exact numeric or symbolic final answer (as opposed to an open-ended explanation)?",
+  "involves_code_writing_or_debugging": "Does the request involve writing, completing, or debugging a piece of code?",
+  "requires_code_execution_simulation": "Would correctly answering the request require mentally simulating program execution or tracing through code state changes?",
+  "is_graduate_level_science": "Does the request involve graduate-level scientific content (e.g., physics, chemistry, biology, or advanced engineering concepts)?",
+  "is_multiple_choice": "Is the request framed as a multiple-choice question with a fixed set of answer options?",
+  "requires_specialized_domain_knowledge": "Does answering correctly require specialized or niche domain knowledge not commonly known to a generalist?",
+  "has_prior_agent_steps": "Does the request include prior conversation turns or agent steps that must be understood and built upon correctly?",
+  "requires_careful_edge_case_handling": "Does the request involve edge cases, exceptions, or corner conditions that must be carefully handled for a correct answer?",
+  "has_multiple_subquestions": "Does the request contain multiple distinct sub-questions or sub-tasks that all need to be addressed?",
+  "requires_precise_formatting": "Does the request require the answer to follow a strict output format (e.g., specific code structure, table, or answer template)?",
+  "is_ambiguous_or_underspecified": "Is the request ambiguous or missing information needed to produce a fully correct and unique answer?"
+ },
+ "problems": []
+}

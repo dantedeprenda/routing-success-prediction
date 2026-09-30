@@ -1,0 +1,31 @@
+{
+ "created": "2026-09-29T12:38:19+00:00",
+ "pair": [
+  "deepseek-v3-0324",
+  "gemini-2.5-flash"
+ ],
+ "requested_model": "claude-sonnet-5",
+ "returned_model": "claude-sonnet-5",
+ "usage": {
+  "input_tokens": 236,
+  "output_tokens": 942
+ },
+ "prompt": "Two language models, deepseek-v3-0324 and gemini-2.5-flash, will each attempt the same user request: a conversation, possibly including an agent's earlier steps. The requests come from a mix of competition mathematics, programming problems, graduate-level science questions, general multiple-choice knowledge questions and software-engineering issues. Both models often succeed or fail together; what matters here is the requests where exactly one of them is right.\n\nWrite exactly 13 yes/no questions about the request that a careful reader could answer from the request text alone, and whose answers would help predict which of the two models answers correctly when they disagree. Do not mention any benchmark. Return a JSON object mapping a short snake_case id to each question.",
+ "reply": "```json\n{\n  \"is_math_problem\": \"Does the request primarily involve solving a mathematics problem (e.g., algebra, calculus, combinatorics, or proof-based reasoning)?\",\n  \"requires_multistep_calculation\": \"Does answering correctly require multiple sequential calculation or reasoning steps where an early error would propagate?\",\n  \"is_coding_task\": \"Does the request involve writing, completing, or fixing a piece of code?\",\n  \"involves_existing_code_context\": \"Does the request include a code snippet or agent trajectory that must be read and understood before responding?\",\n  \"requires_debugging\": \"Does the request require identifying and fixing a bug or error in existing code or logic?\",\n  \"is_multiple_choice\": \"Is the request formatted as a multiple-choice question with a fixed set of answer options?\",\n  \"requires_specialized_domain_knowledge\": \"Does answering correctly require specialized graduate-level scientific or technical knowledge (e.g., physics, chemistry, biology)?\",\n  \"requires_precise_output_format\": \"Does the request specify a strict output format (e.g., a single number, specific units, JSON, or code block) that must be matched exactly?\",\n  \"has_potential_ambiguity\": \"Could the request be reasonably interpreted in more than one way due to ambiguous wording or missing details?\",\n  \"requires_long_context_tracking\": \"Does the request involve enough length or complexity (e.g., long problem statement, multi-part conversation) that tracking all details is nontrivial?\",\n  \"requires_symbolic_or_numeric_precision\": \"Does the correct answer depend on exact symbolic manipulation or precise numeric computation rather than approximate reasoning?\",\n  \"requires_general_factual_recall\": \"Does answering correctly primarily depend on recalling a specific fact or piece of knowledge rather than reasoning through a novel problem?\",\n  \"has_verifiable_ground_truth\": \"Is there a single, objectively verifiable correct answer to the request (as opposed to open-ended or subjective content)?\"\n}\n```",
+ "questions": {
+  "is_math_problem": "Does the request primarily involve solving a mathematics problem (e.g., algebra, calculus, combinatorics, or proof-based reasoning)?",
+  "requires_multistep_calculation": "Does answering correctly require multiple sequential calculation or reasoning steps where an early error would propagate?",
+  "is_coding_task": "Does the request involve writing, completing, or fixing a piece of code?",
+  "involves_existing_code_context": "Does the request include a code snippet or agent trajectory that must be read and understood before responding?",
+  "requires_debugging": "Does the request require identifying and fixing a bug or error in existing code or logic?",
+  "is_multiple_choice": "Is the request formatted as a multiple-choice question with a fixed set of answer options?",
+  "requires_specialized_domain_knowledge": "Does answering correctly require specialized graduate-level scientific or technical knowledge (e.g., physics, chemistry, biology)?",
+  "requires_precise_output_format": "Does the request specify a strict output format (e.g., a single number, specific units, JSON, or code block) that must be matched exactly?",
+  "has_potential_ambiguity": "Could the request be reasonably interpreted in more than one way due to ambiguous wording or missing details?",
+  "requires_long_context_tracking": "Does the request involve enough length or complexity (e.g., long problem statement, multi-part conversation) that tracking all details is nontrivial?",
+  "requires_symbolic_or_numeric_precision": "Does the correct answer depend on exact symbolic manipulation or precise numeric computation rather than approximate reasoning?",
+  "requires_general_factual_recall": "Does answering correctly primarily depend on recalling a specific fact or piece of knowledge rather than reasoning through a novel problem?",
+  "has_verifiable_ground_truth": "Is there a single, objectively verifiable correct answer to the request (as opposed to open-ended or subjective content)?"
+ },
+ "problems": []
+}

@@ -1,0 +1,27 @@
+{
+ "created": "2026-09-29T07:40:54+00:00",
+ "requested_model": "claude-sonnet-5",
+ "returned_model": "claude-sonnet-5",
+ "usage": {
+  "input_tokens": 207,
+  "output_tokens": 678
+ },
+ "prompt": "A router must decide, before any language model answers, whether a given language model will answer a user request fully and correctly. It sees only the request: a conversation, possibly including an agent's earlier steps. The requests come from a mix of competition mathematics, programming problems, graduate-level science questions, general multiple-choice knowledge questions and software-engineering issues.\n\nWrite exactly 13 yes/no questions about the request that a careful reader could answer from the request text alone, and whose answers would help predict whether a language model succeeds. Do not mention any specific model, company or benchmark. Return a JSON object mapping a short snake_case id to each question.",
+ "reply": "```json\n{\n  \"is_multiple_choice\": \"Does the request present a fixed set of answer options to choose from?\",\n  \"requires_multi_step_reasoning\": \"Does answering correctly require multiple chained reasoning or computation steps rather than a single lookup?\",\n  \"has_explicit_final_answer_format\": \"Does the request specify a particular format, unit, or structure for the final answer?\",\n  \"includes_code_snippet\": \"Does the request include a code snippet, stack trace, or file contents?\",\n  \"requires_code_execution_knowledge\": \"Would correctly answering require reasoning about how code actually executes (e.g., tracing logic, predicting output, or debugging)?\",\n  \"requires_external_or_specialized_knowledge\": \"Does the question depend on specialized domain knowledge (e.g., graduate-level science, obscure facts) not inferable from general reasoning alone?\",\n  \"has_prior_agent_steps\": \"Does the request include prior conversation turns or agent actions that must be interpreted to continue correctly?\",\n  \"is_long_or_complex_prompt\": \"Is the request unusually long or does it contain a large amount of detail/context to track?\",\n  \"requires_precise_numeric_computation\": \"Does solving the request require precise numeric or symbolic calculation (e.g., algebra, arithmetic, equation solving)?\",\n  \"is_ambiguous_or_underspecified\": \"Is the request ambiguous or missing information needed to produce a fully correct answer?\",\n  \"requires_tool_or_environment_interaction\": \"Does the request imply the model should use or reason about external tools, APIs, or a runtime environment?\",\n  \"has_verifiable_ground_truth\": \"Does the request have a single objectively correct answer that could be checked against a known solution?\",\n  \"requires_long_form_explanation\": \"Does the request ask for a detailed explanation, proof, or derivation rather than a short answer?\"\n}\n```",
+ "questions": {
+  "is_multiple_choice": "Does the request present a fixed set of answer options to choose from?",
+  "requires_multi_step_reasoning": "Does answering correctly require multiple chained reasoning or computation steps rather than a single lookup?",
+  "has_explicit_final_answer_format": "Does the request specify a particular format, unit, or structure for the final answer?",
+  "includes_code_snippet": "Does the request include a code snippet, stack trace, or file contents?",
+  "requires_code_execution_knowledge": "Would correctly answering require reasoning about how code actually executes (e.g., tracing logic, predicting output, or debugging)?",
+  "requires_external_or_specialized_knowledge": "Does the question depend on specialized domain knowledge (e.g., graduate-level science, obscure facts) not inferable from general reasoning alone?",
+  "has_prior_agent_steps": "Does the request include prior conversation turns or agent actions that must be interpreted to continue correctly?",
+  "is_long_or_complex_prompt": "Is the request unusually long or does it contain a large amount of detail/context to track?",
+  "requires_precise_numeric_computation": "Does solving the request require precise numeric or symbolic calculation (e.g., algebra, arithmetic, equation solving)?",
+  "is_ambiguous_or_underspecified": "Is the request ambiguous or missing information needed to produce a fully correct answer?",
+  "requires_tool_or_environment_interaction": "Does the request imply the model should use or reason about external tools, APIs, or a runtime environment?",
+  "has_verifiable_ground_truth": "Does the request have a single objectively correct answer that could be checked against a known solution?",
+  "requires_long_form_explanation": "Does the request ask for a detailed explanation, proof, or derivation rather than a short answer?"
+ },
+ "problems": []
+}

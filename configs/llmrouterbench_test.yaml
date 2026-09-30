@@ -1,0 +1,127 @@
+# FINAL test run. Questions v1 frozen. Test split fixed at seed 42's held-out 30% (never called during design).
+name: llmrouterbench_test
+dataset:
+  loader: llmrouterbench
+  root: data/llmrouterbench/bench-release
+  datasets:
+  - aime
+  - livemathbench
+  - livecodebench
+  - gpqa
+  - mmlupro
+  - swe-bench
+  pool:
+  - name: deepseek-v3.1-terminus
+    description: Cheap open general model.
+    price_in: 0.27
+    price_out: 1.0
+  - name: deepseek-r1-0528
+    description: Open reasoning model; slower and pricier.
+    price_in: 0.5
+    price_out: 2.15
+  - name: gpt-5
+    description: Frontier reasoning model; most capable and most expensive.
+    price_in: 1.25
+    price_out: 10.0
+split:
+  test_frac: 0.3
+  test_seed: 42
+  seeds:
+  - 42
+  - 999
+  - 2024
+  - 2025
+  - 3407
+  k_shot:
+  - 25
+  - 50
+  - 100
+  - 200
+  - null
+  exclude_from_test: data/design_seen_lrb.txt
+recalibrate:
+- platt
+- isotonic
+binary_pairs:
+- - 0
+  - 2
+- - 1
+  - 2
+match_frac: 0.98
+routers:
+- type: oracle
+- type: always_each
+- type: random
+- type: category_best
+- type: knn
+  k: 10
+- type: tfidf_logreg
+- type: embedding
+  label: bge
+  # Local open embedding model; reads at most 512 tokens (~2,000 chars), so the cut is 2,000
+  # chars (head + latest step, as for the decision routers). Same per-model logistic head as
+  # tfidf_logreg and the decision-model features router, so only the representation differs.
+  store:
+    model: BAAI/bge-base-en-v1.5
+    max_chars: 2000
+    device: mps
+  k: 10
+- type: embedding
+  label: bgeL
+  # Stronger embedding baseline: bge-large with each logistic head's C tuned by CV on the
+  # labeled examples only (the others keep C=1, as does the decision-model head).
+  store:
+    model: BAAI/bge-large-en-v1.5
+    max_chars: 2000
+    device: mps
+  tune: true
+  k: 10
+- type: decision
+  label: jev
+  backend:
+    base_url: https://api.typesafe.ai
+    model: jev-1.13.0
+    name: jev
+    api_key_env: TYPESAFE_API_KEY
+    price_per_m_input: 0.042
+  max_chars: 16000
+  workers: 6
+  formulations:
+  - choice
+  - tier_nouls
+  - difficulty
+  - features
+# Context control added after the Laya results: Jev at Laya's 2,000-char
+# budget. Same frozen v1 questions; prompts <= 2,000 chars hit the 16k cache unchanged.
+- type: decision
+  label: jev-2k
+  backend:
+    base_url: https://api.typesafe.ai
+    model: jev-1.13.0
+    name: jev
+    api_key_env: TYPESAFE_API_KEY
+    price_per_m_input: 0.042
+  max_chars: 2000
+  workers: 6
+  formulations:
+  - choice
+  - tier_nouls
+  - difficulty
+  - features
+- type: decision
+  label: laya
+  backend:
+    kind: laya_local
+    checkpoint: english
+    device: mps
+    noul_as_choice: true
+  max_chars: 2000
+  workers: 1
+  formulations:
+  - choice
+  - tier_nouls
+  - difficulty
+  - features
+# LLM-router baselines (RQ2) and Jev -> judge fallback (RQ3) run on the test split only,
+# via scripts/judge_sample.py: the judges need no labels, and a frontier judge on every
+# train + test prompt would cost ~$30 at a 20 req/min rate limit.

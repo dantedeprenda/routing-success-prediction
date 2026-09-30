@@ -1,0 +1,40 @@
+# Agent-step routing pilot on TwinRouterBench static (run `dmroute fetch twinrouterbench` first).
+# Enable the jev / laya / judge blocks once keys or a local laya-serve are available.
+name: twinrouterbench_pilot
+dataset:
+  loader: twinrouterbench
+  path: data/twinrouterbench/question_bank.jsonl
+split:
+  test_frac: 0.5          # no official split; grouped by trajectory
+  dev_only: true          # question-design phase: never call the test half
+  seeds: [42]
+  k_shot: [50, null]
+recalibrate: [platt]
+binary_pairs: [[0, 3]]
+match_frac: 0.9          # RowPass target for the cost comparison (best single = always-high = 1.0)
+routers:
+  - type: oracle
+  - type: always_each
+  - type: category_best
+  - type: knn
+    k: 10
+  - type: tfidf_logreg
+  - type: decision
+    label: stub
+    backend: {kind: stub}
+    formulations: [choice, tier_nouls, difficulty, features]
+  # - type: decision
+  #   label: laya
+  #   backend: {base_url: "${LAYA_BASE_URL}", model: laya, name: laya}   # TODO confirm laya-serve model id
+  #   max_chars: 2000        # English checkpoint reads 512 tokens
+  #   formulations: [choice, tier_nouls, difficulty, features]
+  - type: decision
+    label: jev
+    backend: {base_url: "https://api.typesafe.ai", model: jev-1.13.0, name: jev,
+              api_key_env: TYPESAFE_API_KEY, price_per_m_input: 0.042}
+    max_chars: 16000
+    workers: 6
+    formulations: [choice, tier_nouls, difficulty, features]
+  # - type: llm_judge
+  #   label: judge-cheap
+  #   backend: {model: TODO-cheap-model, price_in: 0.0, price_out: 0.0}   # TODO pick + verify prices

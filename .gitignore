@@ -1,0 +1,20 @@
+# Local secrets. Never commit.
+.env
+omnigent/
+/data/
+.cache/
+results/*/
+!results/.gitkeep
+# Evidence tables behind the paper's numbers are small and tracked.
+!results/judge_sample/
+!results/evidence/
+.DS_Store
+__pycache__/
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Kaggle bundle (rebuild with kaggle/make_bundle.sh)
+kaggle/build/
+kaggle/*.zip
+

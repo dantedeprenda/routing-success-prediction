@@ -1,0 +1,31 @@
+{
+ "created": "2026-09-29T12:38:39+00:00",
+ "pair": [
+  "kimi-k2-0905",
+  "claude-sonnet-4"
+ ],
+ "requested_model": "claude-sonnet-5",
+ "returned_model": "claude-sonnet-5",
+ "usage": {
+  "input_tokens": 234,
+  "output_tokens": 896
+ },
+ "prompt": "Two language models, kimi-k2-0905 and claude-sonnet-4, will each attempt the same user request: a conversation, possibly including an agent's earlier steps. The requests come from a mix of competition mathematics, programming problems, graduate-level science questions, general multiple-choice knowledge questions and software-engineering issues. Both models often succeed or fail together; what matters here is the requests where exactly one of them is right.\n\nWrite exactly 13 yes/no questions about the request that a careful reader could answer from the request text alone, and whose answers would help predict which of the two models answers correctly when they disagree. Do not mention any benchmark. Return a JSON object mapping a short snake_case id to each question.",
+ "reply": "```json\n{\n  \"is_math_problem\": \"Does the request primarily involve solving a mathematics problem (e.g., algebra, calculus, combinatorics, proof)?\",\n  \"requires_multistep_derivation\": \"Does answering correctly require a long chain of multi-step logical or algebraic derivation (more than 3 steps)?\",\n  \"is_coding_task\": \"Does the request involve writing, debugging, or explaining source code?\",\n  \"has_prior_agent_steps\": \"Does the prompt include earlier agent actions, tool outputs, or partial code/state that must be understood before responding?\",\n  \"requires_precise_numeric_answer\": \"Does the task require producing an exact numeric or symbolic final answer (as opposed to open-ended discussion)?\",\n  \"is_multiple_choice\": \"Is the request framed as a multiple-choice question with a single correct option to select?\",\n  \"requires_specialized_domain_knowledge\": \"Does answering correctly require graduate-level or highly specialized domain knowledge (e.g., advanced physics, biology, law)?\",\n  \"requires_external_factual_recall\": \"Does the task depend on recalling specific factual/general knowledge rather than reasoning from given information?\",\n  \"involves_ambiguous_or_underspecified_request\": \"Is the request ambiguous, underspecified, or open to multiple reasonable interpretations?\",\n  \"requires_long_context_tracking\": \"Does the prompt require tracking and integrating a large amount of context (e.g., long code, long conversation) to answer correctly?\",\n  \"requires_strict_output_format\": \"Does the request specify a strict output format (e.g., JSON, specific syntax, particular structure) that must be followed exactly?\",\n  \"involves_edge_case_reasoning\": \"Does correctly answering require careful handling of edge cases, exceptions, or subtle corner conditions?\",\n  \"is_short_and_self_contained\": \"Is the request short and self-contained, answerable without needing extensive external context or multi-part reasoning?\"\n}\n```",
+ "questions": {
+  "is_math_problem": "Does the request primarily involve solving a mathematics problem (e.g., algebra, calculus, combinatorics, proof)?",
+  "requires_multistep_derivation": "Does answering correctly require a long chain of multi-step logical or algebraic derivation (more than 3 steps)?",
+  "is_coding_task": "Does the request involve writing, debugging, or explaining source code?",
+  "has_prior_agent_steps": "Does the prompt include earlier agent actions, tool outputs, or partial code/state that must be understood before responding?",
+  "requires_precise_numeric_answer": "Does the task require producing an exact numeric or symbolic final answer (as opposed to open-ended discussion)?",
+  "is_multiple_choice": "Is the request framed as a multiple-choice question with a single correct option to select?",
+  "requires_specialized_domain_knowledge": "Does answering correctly require graduate-level or highly specialized domain knowledge (e.g., advanced physics, biology, law)?",
+  "requires_external_factual_recall": "Does the task depend on recalling specific factual/general knowledge rather than reasoning from given information?",
+  "involves_ambiguous_or_underspecified_request": "Is the request ambiguous, underspecified, or open to multiple reasonable interpretations?",
+  "requires_long_context_tracking": "Does the prompt require tracking and integrating a large amount of context (e.g., long code, long conversation) to answer correctly?",
+  "requires_strict_output_format": "Does the request specify a strict output format (e.g., JSON, specific syntax, particular structure) that must be followed exactly?",
+  "involves_edge_case_reasoning": "Does correctly answering require careful handling of edge cases, exceptions, or subtle corner conditions?",
+  "is_short_and_self_contained": "Is the request short and self-contained, answerable without needing extensive external context or multi-part reasoning?"
+ },
+ "problems": []
+}

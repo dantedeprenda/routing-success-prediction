@@ -1,0 +1,31 @@
+{
+ "created": "2026-09-29T12:38:29+00:00",
+ "pair": [
+  "deepseek-v3-0324",
+  "glm-4.6"
+ ],
+ "requested_model": "claude-sonnet-5",
+ "returned_model": "claude-sonnet-5",
+ "usage": {
+  "input_tokens": 232,
+  "output_tokens": 852
+ },
+ "prompt": "Two language models, deepseek-v3-0324 and glm-4.6, will each attempt the same user request: a conversation, possibly including an agent's earlier steps. The requests come from a mix of competition mathematics, programming problems, graduate-level science questions, general multiple-choice knowledge questions and software-engineering issues. Both models often succeed or fail together; what matters here is the requests where exactly one of them is right.\n\nWrite exactly 13 yes/no questions about the request that a careful reader could answer from the request text alone, and whose answers would help predict which of the two models answers correctly when they disagree. Do not mention any benchmark. Return a JSON object mapping a short snake_case id to each question.",
+ "reply": "{\n  \"is_math_problem\": \"Does the request involve a mathematics problem requiring symbolic or numeric computation?\",\n  \"is_coding_task\": \"Does the request require writing, debugging, or explaining source code?\",\n  \"requires_multi_step_reasoning\": \"Does answering correctly require chaining together multiple distinct reasoning steps rather than a single lookup or calculation?\",\n  \"has_explicit_final_answer_format\": \"Does the request specify a particular format for the final answer (e.g., a single letter, a boxed number, specific units)?\",\n  \"is_multiple_choice\": \"Is the request a multiple-choice question with a fixed set of answer options?\",\n  \"requires_domain_expert_knowledge\": \"Does answering correctly require specialized graduate-level or technical domain knowledge (e.g., advanced physics, chemistry, biology)?\",\n  \"involves_long_context\": \"Does the request include a long prior conversation, code listing, or document that must be carefully tracked to answer correctly?\",\n  \"requires_precise_numeric_computation\": \"Does the correct answer depend on an exact numeric value or calculation rather than a qualitative judgment?\",\n  \"has_ambiguous_or_underspecified_prompt\": \"Is any part of the request ambiguous, underspecified, or open to multiple reasonable interpretations?\",\n  \"requires_edge_case_handling\": \"Does a fully correct solution need to handle special edge cases or exceptions explicitly?\",\n  \"requires_external_up_to_date_facts\": \"Does the request rely on specific factual knowledge that could be easily misremembered or confused with similar facts?\",\n  \"requires_code_execution_simulation\": \"Would correctly answering require mentally simulating code execution or tracing program state step by step?\",\n  \"is_proof_or_derivation_task\": \"Does the request ask for a formal proof, derivation, or rigorous justification rather than just a final result?\"\n}",
+ "questions": {
+  "is_math_problem": "Does the request involve a mathematics problem requiring symbolic or numeric computation?",
+  "is_coding_task": "Does the request require writing, debugging, or explaining source code?",
+  "requires_multi_step_reasoning": "Does answering correctly require chaining together multiple distinct reasoning steps rather than a single lookup or calculation?",
+  "has_explicit_final_answer_format": "Does the request specify a particular format for the final answer (e.g., a single letter, a boxed number, specific units)?",
+  "is_multiple_choice": "Is the request a multiple-choice question with a fixed set of answer options?",
+  "requires_domain_expert_knowledge": "Does answering correctly require specialized graduate-level or technical domain knowledge (e.g., advanced physics, chemistry, biology)?",
+  "involves_long_context": "Does the request include a long prior conversation, code listing, or document that must be carefully tracked to answer correctly?",
+  "requires_precise_numeric_computation": "Does the correct answer depend on an exact numeric value or calculation rather than a qualitative judgment?",
+  "has_ambiguous_or_underspecified_prompt": "Is any part of the request ambiguous, underspecified, or open to multiple reasonable interpretations?",
+  "requires_edge_case_handling": "Does a fully correct solution need to handle special edge cases or exceptions explicitly?",
+  "requires_external_up_to_date_facts": "Does the request rely on specific factual knowledge that could be easily misremembered or confused with similar facts?",
+  "requires_code_execution_simulation": "Would correctly answering require mentally simulating code execution or tracing program state step by step?",
+  "is_proof_or_derivation_task": "Does the request ask for a formal proof, derivation, or rigorous justification rather than just a final result?"
+ },
+ "problems": []
+}

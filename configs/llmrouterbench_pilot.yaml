@@ -1,0 +1,38 @@
+# Main offline benchmark, question-design phase (dev split only).
+# Pool = the cost/accuracy Pareto frontier of single models on the exact-match datasets
+# (pilot, 2026-09-25): every other flagship is dominated by one of these.
+name: llmrouterbench_pilot
+dataset:
+  loader: llmrouterbench
+  root: data/llmrouterbench/bench-release
+  # Exact-match graded only; HLE / SimpleQA / ArenaHard are LLM-judge graded (label noise).
+  # tau2 excluded: its stored query is the hidden user-simulator script (leaks the test).
+  datasets: [aime, livemathbench, livecodebench, gpqa, mmlupro, swe-bench]
+  max_per_dataset: 150
+  pool:
+    - {name: deepseek-v3.1-terminus, description: "Cheap open general model.", price_in: 0.27, price_out: 1.00}
+    - {name: deepseek-r1-0528, description: "Open reasoning model; slower and pricier.", price_in: 0.50, price_out: 2.15}
+    - {name: gpt-5, description: "Frontier reasoning model; most capable and most expensive.", price_in: 1.25, price_out: 10.0}
+split:
+  test_frac: 0.3
+  seeds: [42]              # full run: [42, 999, 2024, 2025, 3407] (LLMRouterBench protocol)
+  k_shot: [50, null]
+  dev_only: true           # never call the test split while questions are being designed
+recalibrate: [platt]
+binary_pairs: [[0, 2], [1, 2]]
+match_frac: 0.98
+routers:
+  - type: oracle
+  - type: always_each
+  - type: random
+  - type: category_best
+  - type: knn
+    k: 10
+  - type: tfidf_logreg
+  - type: decision
+    label: jev
+    backend: {base_url: "https://api.typesafe.ai", model: jev-1.13.0, name: jev,
+              api_key_env: TYPESAFE_API_KEY, price_per_m_input: 0.042}
+    max_chars: 16000
+    workers: 6
+    formulations: [choice, tier_nouls, difficulty, features]

@@ -1,0 +1,60 @@
+# Kaggle GPU run: fills the Laya cache for llmrouterbench_test.yaml, nothing else.
+# Seed 42 with k=null asks Laya about every example (full train + test), which covers every
+# seed x k of the real test config. Dataset, pool, split and the Laya router block must stay
+# identical to configs/llmrouterbench_test.yaml (they are what the cache key is built from),
+# except device/batch_size, which are not part of the key. Evaluate locally afterwards.
+name: kaggle_llmrouterbench_laya
+cache: .cache/laya_lrb.sqlite
+dataset:
+  loader: llmrouterbench
+  root: data/llmrouterbench/bench-release
+  datasets:
+  - aime
+  - livemathbench
+  - livecodebench
+  - gpqa
+  - mmlupro
+  - swe-bench
+  pool:
+  - name: deepseek-v3.1-terminus
+    description: Cheap open general model.
+    price_in: 0.27
+    price_out: 1.0
+  - name: deepseek-r1-0528
+    description: Open reasoning model; slower and pricier.
+    price_in: 0.5
+    price_out: 2.15
+  - name: gpt-5
+    description: Frontier reasoning model; most capable and most expensive.
+    price_in: 1.25
+    price_out: 10.0
+split:
+  test_frac: 0.3
+  test_seed: 42
+  seeds:
+  - 42
+  k_shot:
+  - null
+  exclude_from_test: data/design_seen_lrb.txt
+recalibrate:
+- platt
+binary_pairs:
+- - 0
+  - 2
+match_frac: 0.98
+routers:
+- type: decision
+  label: laya
+  backend:
+    kind: laya_local
+    checkpoint: english
+    device: cuda
+    batch_size: 32
+    noul_as_choice: true
+  max_chars: 2000
+  workers: 1
+  formulations:
+  - choice
+  - tier_nouls
+  - difficulty
+  - features

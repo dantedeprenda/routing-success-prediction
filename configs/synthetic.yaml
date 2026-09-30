@@ -1,0 +1,32 @@
+# End-to-end smoke run: synthetic data, stub decision model, stub LLM judge. No keys needed.
+# The numbers mean nothing; this exists so every code path runs.
+name: synthetic
+dataset:
+  loader: synthetic
+  n: 600
+  seed: 0
+split:
+  test_frac: 0.3
+  seeds: [42, 999]
+  k_shot: [50, null]   # null = the full train split
+recalibrate: [platt]
+binary_pairs: [[0, 3]]
+routers:
+  - type: oracle
+  - type: always_each
+  - type: random
+  - type: category_best
+  - type: knn
+    k: 10
+  - type: tfidf_logreg
+  - type: decision
+    label: stub
+    backend: {kind: stub}
+    formulations: [choice, tier_nouls, difficulty, features]
+  - type: llm_judge
+    label: judge-stub
+    backend: {kind: stub}
+cascades:
+  - primary: "stub:choice"
+    fallback: judge-stub
+    thresholds: [0.2, 0.4, 0.6]

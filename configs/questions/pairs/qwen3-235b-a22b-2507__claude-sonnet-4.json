@@ -1,0 +1,31 @@
+{
+ "created": "2026-09-29T12:39:00+00:00",
+ "pair": [
+  "qwen3-235b-a22b-2507",
+  "claude-sonnet-4"
+ ],
+ "requested_model": "claude-sonnet-5",
+ "returned_model": "claude-sonnet-5",
+ "usage": {
+  "input_tokens": 239,
+  "output_tokens": 863
+ },
+ "prompt": "Two language models, qwen3-235b-a22b-2507 and claude-sonnet-4, will each attempt the same user request: a conversation, possibly including an agent's earlier steps. The requests come from a mix of competition mathematics, programming problems, graduate-level science questions, general multiple-choice knowledge questions and software-engineering issues. Both models often succeed or fail together; what matters here is the requests where exactly one of them is right.\n\nWrite exactly 13 yes/no questions about the request that a careful reader could answer from the request text alone, and whose answers would help predict which of the two models answers correctly when they disagree. Do not mention any benchmark. Return a JSON object mapping a short snake_case id to each question.",
+ "reply": "```json\n{\n  \"is_math_competition_problem\": \"Does the request involve a competition-style mathematics problem (e.g., algebra, combinatorics, number theory, geometry) requiring a exact numeric or symbolic answer?\",\n  \"is_programming_task\": \"Does the request require writing, completing, or debugging code in a specific programming language?\",\n  \"requires_multistep_reasoning\": \"Does solving the request require multiple sequential logical or computational steps rather than a single lookup or short calculation?\",\n  \"has_explicit_final_answer_format\": \"Does the request specify a particular output format (e.g., a boxed answer, a single letter choice, a specific function signature) that the response must match?\",\n  \"is_multiple_choice\": \"Is the request a multiple-choice question with a fixed set of answer options?\",\n  \"involves_graduate_level_science\": \"Does the request require specialized graduate-level scientific knowledge (e.g., physics, chemistry, biology, advanced engineering)?\",\n  \"requires_precise_calculation\": \"Does answering correctly require precise numerical computation (e.g., arithmetic, algebraic simplification, unit conversion) where small errors would change the final answer?\",\n  \"requires_long_context_tracking\": \"Does the request include a long conversation history or agent trace that must be carefully tracked to answer correctly?\",\n  \"is_open_ended_explanation\": \"Does the request ask for an open-ended explanation, discussion, or design rather than a single verifiable correct answer?\",\n  \"involves_code_debugging\": \"Does the request involve identifying and fixing a bug in provided code rather than writing new code from scratch?\",\n  \"requires_external_domain_facts\": \"Does answering correctly depend on recalling specific factual knowledge (e.g., historical facts, scientific constants, library APIs) rather than pure reasoning?\",\n  \"has_ambiguous_or_underspecified_requirements\": \"Is the request ambiguous or underspecified in a way that could lead to multiple reasonable interpretations of the correct answer?\",\n  \"requires_verification_of_edge_cases\": \"Does correctly solving the request require checking edge cases or special conditions (e.g., boundary values, exceptions, corner cases in code)?\"\n}\n```",
+ "questions": {
+  "is_math_competition_problem": "Does the request involve a competition-style mathematics problem (e.g., algebra, combinatorics, number theory, geometry) requiring a exact numeric or symbolic answer?",
+  "is_programming_task": "Does the request require writing, completing, or debugging code in a specific programming language?",
+  "requires_multistep_reasoning": "Does solving the request require multiple sequential logical or computational steps rather than a single lookup or short calculation?",
+  "has_explicit_final_answer_format": "Does the request specify a particular output format (e.g., a boxed answer, a single letter choice, a specific function signature) that the response must match?",
+  "is_multiple_choice": "Is the request a multiple-choice question with a fixed set of answer options?",
+  "involves_graduate_level_science": "Does the request require specialized graduate-level scientific knowledge (e.g., physics, chemistry, biology, advanced engineering)?",
+  "requires_precise_calculation": "Does answering correctly require precise numerical computation (e.g., arithmetic, algebraic simplification, unit conversion) where small errors would change the final answer?",
+  "requires_long_context_tracking": "Does the request include a long conversation history or agent trace that must be carefully tracked to answer correctly?",
+  "is_open_ended_explanation": "Does the request ask for an open-ended explanation, discussion, or design rather than a single verifiable correct answer?",
+  "involves_code_debugging": "Does the request involve identifying and fixing a bug in provided code rather than writing new code from scratch?",
+  "requires_external_domain_facts": "Does answering correctly depend on recalling specific factual knowledge (e.g., historical facts, scientific constants, library APIs) rather than pure reasoning?",
+  "has_ambiguous_or_underspecified_requirements": "Is the request ambiguous or underspecified in a way that could lead to multiple reasonable interpretations of the correct answer?",
+  "requires_verification_of_edge_cases": "Does correctly solving the request require checking edge cases or special conditions (e.g., boundary values, exceptions, corner cases in code)?"
+ },
+ "problems": []
+}

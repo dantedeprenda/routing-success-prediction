@@ -1,0 +1,27 @@
+{
+ "created": "2026-09-29T07:41:08+00:00",
+ "requested_model": "claude-sonnet-5",
+ "returned_model": "claude-sonnet-5",
+ "usage": {
+  "input_tokens": 207,
+  "output_tokens": 631
+ },
+ "prompt": "A router must decide, before any language model answers, whether a given language model will answer a user request fully and correctly. It sees only the request: a conversation, possibly including an agent's earlier steps. The requests come from a mix of competition mathematics, programming problems, graduate-level science questions, general multiple-choice knowledge questions and software-engineering issues.\n\nWrite exactly 13 yes/no questions about the request that a careful reader could answer from the request text alone, and whose answers would help predict whether a language model succeeds. Do not mention any specific model, company or benchmark. Return a JSON object mapping a short snake_case id to each question.",
+ "reply": "```json\n{\n  \"requires_multi_step_reasoning\": \"Does answering the request require multiple chained reasoning or calculation steps rather than a single lookup?\",\n  \"has_explicit_final_answer_format\": \"Does the request specify a particular format, structure, or template that the final answer must follow?\",\n  \"involves_code_writing\": \"Does the request require writing new code (as opposed to just explaining or debugging existing code)?\",\n  \"includes_existing_code_or_error\": \"Does the request include an existing code snippet, stack trace, or error message to analyze?\",\n  \"requires_external_knowledge\": \"Does the request depend on specialized domain knowledge (e.g., advanced math, science, or niche technical facts) not derivable from general reasoning alone?\",\n  \"is_multiple_choice\": \"Is the request structured as a multiple-choice question with a fixed set of answer options?\",\n  \"has_prior_agent_steps\": \"Does the request include earlier conversation turns or agent actions that must be understood or continued?\",\n  \"requires_numeric_computation\": \"Does solving the request require precise numeric computation or symbolic algebraic manipulation?\",\n  \"is_ambiguous_or_underspecified\": \"Is the request missing information or ambiguous in a way that could require clarification or assumptions?\",\n  \"requires_long_output\": \"Does the request likely require a long, multi-part, or highly detailed response to be considered complete?\",\n  \"requires_domain_specific_terminology\": \"Does the request use specialized technical or scientific terminology specific to its field?\",\n  \"involves_constraints_or_edge_cases\": \"Does the request involve specific constraints, edge cases, or exceptions that must be carefully handled?\",\n  \"is_self_contained\": \"Does the request provide all necessary information to produce a complete and correct answer without needing external resources?\"\n}\n```",
+ "questions": {
+  "requires_multi_step_reasoning": "Does answering the request require multiple chained reasoning or calculation steps rather than a single lookup?",
+  "has_explicit_final_answer_format": "Does the request specify a particular format, structure, or template that the final answer must follow?",
+  "involves_code_writing": "Does the request require writing new code (as opposed to just explaining or debugging existing code)?",
+  "includes_existing_code_or_error": "Does the request include an existing code snippet, stack trace, or error message to analyze?",
+  "requires_external_knowledge": "Does the request depend on specialized domain knowledge (e.g., advanced math, science, or niche technical facts) not derivable from general reasoning alone?",
+  "is_multiple_choice": "Is the request structured as a multiple-choice question with a fixed set of answer options?",
+  "has_prior_agent_steps": "Does the request include earlier conversation turns or agent actions that must be understood or continued?",
+  "requires_numeric_computation": "Does solving the request require precise numeric computation or symbolic algebraic manipulation?",
+  "is_ambiguous_or_underspecified": "Is the request missing information or ambiguous in a way that could require clarification or assumptions?",
+  "requires_long_output": "Does the request likely require a long, multi-part, or highly detailed response to be considered complete?",
+  "requires_domain_specific_terminology": "Does the request use specialized technical or scientific terminology specific to its field?",
+  "involves_constraints_or_edge_cases": "Does the request involve specific constraints, edge cases, or exceptions that must be carefully handled?",
+  "is_self_contained": "Does the request provide all necessary information to produce a complete and correct answer without needing external resources?"
+ },
+ "problems": []
+}

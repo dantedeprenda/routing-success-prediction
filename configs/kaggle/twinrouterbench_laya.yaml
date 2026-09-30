@@ -1,0 +1,41 @@
+# Kaggle GPU run: fills the Laya cache for twinrouterbench_test.yaml, nothing else.
+# Seed 42 with k=null asks Laya about every step (full train + test), which covers every
+# seed x k of the real test config. Dataset, split and the Laya router block must stay
+# identical to configs/twinrouterbench_test.yaml (they are what the cache key is built from),
+# except device/batch_size, which are not part of the key. Evaluate locally afterwards.
+name: kaggle_twinrouterbench_laya
+cache: .cache/laya_trb.sqlite
+dataset:
+  loader: twinrouterbench
+  path: data/twinrouterbench/question_bank.jsonl
+split:
+  test_frac: 0.5
+  test_seed: 42
+  seeds:
+  - 42
+  k_shot:
+  - null
+  exclude_from_test: data/design_seen_trb.txt
+recalibrate:
+- platt
+binary_pairs:
+- - 0
+  - 3
+match_frac: 0.9
+routers:
+- type: decision
+  label: laya-ml
+  backend:
+    kind: laya_local
+    checkpoint: multilingual
+    max_len: 1024
+    device: cuda
+    batch_size: 8  # 8 states x 17 rows x 1024 tokens; an OOM silently moves Laya to CPU
+    noul_as_choice: true
+  max_chars: 4000
+  workers: 1
+  formulations:
+  - choice
+  - tier_nouls
+  - difficulty
+  - features
