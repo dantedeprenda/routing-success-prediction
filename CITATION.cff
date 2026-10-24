@@ -1,17 +1,19 @@
-# RELEASE: fill in the paper title, venue, year and arXiv id once the paper is accepted.
+# RELEASE: add the arXiv id (identifiers, url) once the preprint is live; switch to the venue after acceptance.
 cff-version: 1.2.0
 message: "If you use this code or its results, please cite the paper below."
 title: "Predicting LLM Success Is Not Enough for Routing: Few-Label Question Features Learn Difficulty, Not Complementarity (code)"
 authors:
   - family-names: "de Prenda"
     given-names: "Dante"
+    affiliation: "Columbia University"
 license: MIT
 repository-code: "https://github.com/dantedeprenda/routing-success-prediction"
 preferred-citation:
-  type: conference-paper
+  type: unpublished
   title: "Predicting LLM Success Is Not Enough for Routing: Few-Label Question Features Learn Difficulty, Not Complementarity"
   authors:
     - family-names: "de Prenda"
       given-names: "Dante"
-  collection-title: "VENUE (fill in after acceptance)"
-  year: 2027
+      affiliation: "Columbia University"
+  notes: "Preprint"
+  year: 2026

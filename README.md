@@ -4,6 +4,8 @@
 
 **Few-label question features learn *difficulty*, not *complementarity***
 
+Dante de Prenda · Columbia University
+
 [![tests](https://github.com/dantedeprenda/routing-success-prediction/actions/workflows/tests.yml/badge.svg)](https://github.com/dantedeprenda/routing-success-prediction/actions/workflows/tests.yml)
 ![python](https://img.shields.io/badge/python-3.11%2B-3776ab)
 ![license](https://img.shields.io/badge/license-MIT-green)
