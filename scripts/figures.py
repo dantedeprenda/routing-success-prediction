@@ -60,8 +60,8 @@ MODEL_NAMES = {  # pool ids -> printed names (TwinRouterBench tiers are named by
 TEXT_ROUTERS = [  # (metrics name, label, marker, linestyle)
     ("tfidf_logreg", "TF-IDF + logistic", "s", "-"),
     ("knn10", "TF-IDF kNN", "v", (0, (4, 2))),
-    ("bge_logreg", "Embedding + logistic", "D", "-"),
-    ("bge_knn", "Embedding kNN", "^", (0, (4, 2))),
+    ("bge_logreg", "bge-base + logistic", "D", "-"),
+    ("bge_knn", "bge-base kNN", "^", (0, (4, 2))),
 ]
 
 
@@ -364,7 +364,7 @@ def lodo() -> None:
     ax.axhline(0.5, color=INK_2, lw=0.8, zorder=1)
     ax.set_xticks(x)
     names = {
-        "livecodebench": "LiveCode",
+        "livecodebench": "LiveCode-\nBench",
         "mmlupro": "MMLU-Pro",
         "swe-bench": "SWE-bench",
         "aime": "AIME",
